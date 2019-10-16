@@ -8,9 +8,7 @@ export default {
     file: 'public/bundle.js',
   },
   plugins: [
-    svelte({
-      include: 'src/**/*.svelte',
-    }),
+    svelte(),
     resolve()
   ]
 }
