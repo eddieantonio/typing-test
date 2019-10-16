@@ -3,6 +3,7 @@ import {Router, Route} from 'svero';
 
 import EnterParticipantID from './pages/EnterParticipantID.svelte';
 import BeforeTrial from './pages/BeforeTrial.svelte';
+import TypingTest from './pages/TypingTest.svelte';
 
 let sentences = [
     {id: 1, name: 'tâpwe'},
@@ -15,8 +16,6 @@ let sentences = [
   <Router>
     <Route path="/" exact component={EnterParticipantID} />
     <Route path="/trial" exact component={BeforeTrial} />
-    <Route path="/start-trial" exact>
-      <strong> Not implemented! </strong>
-    </Route>
+    <Route path="/start-trial" exact component={TypingTest} />
   </Router>
 </main>
