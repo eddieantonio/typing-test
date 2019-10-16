@@ -14,6 +14,9 @@ let sentences = [
 <main>
   <Router>
     <Route path="/" exact component={EnterParticipantID} />
-    <Route path="/trial" component={BeforeTrial} />
+    <Route path="/trial" exact component={BeforeTrial} />
+    <Route path="/start-trial" exact>
+      <strong> Not implemented! </strong>
+    </Route>
   </Router>
 </main>
