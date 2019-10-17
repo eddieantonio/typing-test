@@ -39,7 +39,7 @@
     let timestamp = performance.now();
     events.push({event: 'done', data: null, timestamp});
     console.table(events);
-    globals.logKeypresses(1, events);
+    globals.logTrial(events, buffer);
 
     alert('Not implemented :/');
   }

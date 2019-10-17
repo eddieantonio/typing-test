@@ -65,14 +65,15 @@ export class Globals {
     return this._currentTrial.set(value);
   }
 
-  logKeypresses(trial, events) {
-    console.assert(trial >= 0);
+  logTrial(events, buffer) {
+    let trial = globals.currentTrial;
+    console.assert(trial && trial > 0);
     console.assert(this.currentParticipantID);
     console.assert(this.layoutUnderTest);
 
     let key = `${this.currentParticipantID}:${this.layoutUnderTest}:${trial}`;
     let keypresses = new LocalStorageVariable(key);
-    keypresses.set(JSON.stringify(events));
+    keypresses.set(JSON.stringify({ events, buffer }));
   }
 }
 
