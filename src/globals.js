@@ -2,6 +2,8 @@
  * Defines a bunch of globals. Yes, globals bad, I know.
  */
 
+const VALID_KEYBOARD_LAYOUTS = ['gboard', 'keyman', 'firstvoices'];
+
 /**
  * A single variable that is persisted to LocalStorage.
  */
@@ -29,12 +31,12 @@ export class LocalStorageVariable {
 
 
 /**
- * Makes it convenient to get and set globals.
+ * Make it convenient to get and set globals.
  */
 export class Globals {
   constructor() {
     this._currentParticipantID = new LocalStorageVariable('currentParticipantID');
-    this._currentKeyboardLayout = new LocalStorageVariable('currentKeyboardLayout');
+    this._currentKeyboardLayout = new LocalStorageVariable('layoutUnderTest');
   }
 
   get currentParticipantID() {
@@ -46,12 +48,12 @@ export class Globals {
     return this._currentParticipantID.set(value);
   }
 
-  get currentKeyboardLayout() {
+  get layoutUnderTest() {
     return this._currentKeyboardLayout.get();
   }
 
-  set currentKeyboardLayout(value) {
-    console.assert(['gboard', 'keyman', 'firstvoices'].include(value));
+  set layoutUnderTest(value) {
+    console.assert(VALID_KEYBOARD_LAYOUTS.includes(value));
     return this._currentKeyboardLayout.set(value);
   }
 }

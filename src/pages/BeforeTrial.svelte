@@ -1,4 +1,6 @@
 <script>
+import globals from '../globals';
+
 let keyboardLayout;
 // It's a key but it's also the key, geddit?
 let keykey;
@@ -10,27 +12,26 @@ const layoutTopLeftKey = {
 };
 
 // TODO: redirect to home page if we don't have a paricipant ID!
-console.assert(window.localStorage['currentParticipantID']);
+console.assert(globals.currentParticipantID);
 
 
 /**
  *
  */
-function nextScreen(event) {
-  // TODO: verify that keykey is what we expected.
+function advanceWhenValidLayoutSelected(event) {
   if (layoutTopLeftKey[keyboardLayout] !== keykey) {
-    alert('that is incorrect');
+    alert('That is incorrect!');
     event.preventDefault();
   }
 
-  window.localStorage['layoutUnderTest'] = keyboardLayout;
+  globals.layoutUnderTest = keyboardLayout;
 }
 
 </script>
 
 <h1> Starting the trial: </h1>
 
-<form action="/start-trial" on:submit={nextScreen}>
+<form action="/start-trial" on:submit={advanceWhenValidLayoutSelected}>
   <label for="select-layout"> Select the keyboard layout </label>
   <select id="select-layout" bind:value={keyboardLayout}>
     <!-- TODO: only display layouts we have not seen yet! -->
