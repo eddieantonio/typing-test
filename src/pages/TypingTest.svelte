@@ -1,15 +1,16 @@
 <script>
   // TODO: get current sentence from... elsewhere.
   let sentence = "ᑖᐻ";
-  let buffer;
-  let lastEvent;
+  let firstTimeFocused = null;
 
-  let firstTimeFocused;
+  let buffer;
+  const events = [];
 
   function recordFirstTimeFocused(event) {
     let timestamp = performance.now()
-    console.assert(firstTimeFocused === undefined);
+    console.assert(firstTimeFocused === null);
     firstTimeFocused = timestamp;
+    events.push({event: 'focus', data: null, timestamp});
   }
 
   function recordKeypress(event) {
@@ -26,12 +27,18 @@
     //  - "insertText" for syllables, e.g., an insertText of ᐟ followed by ᐤ,
     //      followed by ᐻ
     //  - "deleteContentBackward"
+    events.push({event: inputType, data, timestamp });
+  }
 
-    lastEvent = JSON.stringify({event: inputType, char: data, timestamp }, null, 2);
-    console.log({event});
+  function goToNextScreen() {
+    let timestamp = performance.now();
+    events.push({event: 'done', data: null, timestamp});
+    console.table(events);
+    alert('Not implemented :/');
   }
 </script>
 
+<button on:click={goToNextScreen}>Done</button>
 <p class="the-sentence">{sentence}</p>
 <textarea
   on:input={recordKeypress}
@@ -44,6 +51,3 @@
   spellcheck="false"
   wrap="hard"
 />
-
-<pre style="white-space: pre-line;">{lastEvent}</pre>
-<output>{firstTimeFocused}</output>
