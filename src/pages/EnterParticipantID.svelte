@@ -1,12 +1,14 @@
 <script>
-let participantID = localStorage['currentParticipantID'];
+import globals from '../globals';
 
-function nextScreen() {
-  localStorage['currentParticipantID'] = participantID;
+let participantID = globals.currentParticipantID;
+
+function saveParticipantID() {
+  globals.currentParticipantID = participantID;
 }
 </script>
 
-<form action="/trial">
+<form action="/trial" on:submit={saveParticipantID}>
   <label for="partid"> Please enter your participant ID:
       <input type="number" id="partid" bind:value={participantID} required>
   </label>
