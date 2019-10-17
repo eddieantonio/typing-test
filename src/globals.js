@@ -56,6 +56,16 @@ export class Globals {
     console.assert(VALID_KEYBOARD_LAYOUTS.includes(value));
     return this._currentKeyboardLayout.set(value);
   }
+
+  logKeypresses(trial, events) {
+    console.assert(trial >= 0);
+    console.assert(this.currentParticipantID);
+    console.assert(this.layoutUnderTest);
+
+    let key = `${this.currentParticipantID}:${this.layoutUnderTest}:${trial}`;
+    let keypresses = new LocalStorageVariable(key);
+    keypresses.set(JSON.stringify(events));
+  }
 }
 
 const globals = new Globals;
