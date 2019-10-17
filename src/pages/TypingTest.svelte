@@ -5,6 +5,9 @@
   let sentence = "ᑖᐻ";
   let firstTimeFocused = null;
 
+  // TODO: set trial from URL?
+  let trial = globals.currentTrial = 1;
+
   let buffer;
   const events = [];
 
@@ -37,6 +40,7 @@
     events.push({event: 'done', data: null, timestamp});
     console.table(events);
     globals.logKeypresses(1, events);
+
     alert('Not implemented :/');
   }
 </script>

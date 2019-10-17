@@ -37,6 +37,7 @@ export class Globals {
   constructor() {
     this._currentParticipantID = new LocalStorageVariable('currentParticipantID');
     this._currentKeyboardLayout = new LocalStorageVariable('layoutUnderTest');
+    this._currentTrial = new LocalStorageVariable('currentTrial ');
   }
 
   get currentParticipantID() {
@@ -44,7 +45,6 @@ export class Globals {
   }
 
   set currentParticipantID(value) {
-    debugger;
     return this._currentParticipantID.set(value);
   }
 
@@ -55,6 +55,14 @@ export class Globals {
   set layoutUnderTest(value) {
     console.assert(VALID_KEYBOARD_LAYOUTS.includes(value));
     return this._currentKeyboardLayout.set(value);
+  }
+
+  get currentTrial() {
+    return Number(this._currentTrial.get());
+  }
+
+  set currentTrial(value) {
+    return this._currentTrial.set(value);
   }
 
   logKeypresses(trial, events) {
