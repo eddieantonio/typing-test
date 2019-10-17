@@ -3,7 +3,7 @@ import {Router, Route, Link} from 'svero';
 
 import EnterParticipantID from './pages/EnterParticipantID.svelte';
 // TODO: rename this component:
-import BeforeTrial from './pages/BeforeTrial.svelte';
+import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
 import TypingTest from './pages/TypingTest.svelte';
 </script>
 
@@ -24,7 +24,7 @@ import TypingTest from './pages/TypingTest.svelte';
     </Route>
 
     <!-- The researcher then selects a layout: -->
-    <Route path="/layout" exact component={BeforeTrial} />
+    <Route path="/layout" exact component={SelectKeyboardLayout} />
 
     <!-- The researcher hands it back and the instructions screen shows up -->
     <Route path="/layout/:layout" exact>
