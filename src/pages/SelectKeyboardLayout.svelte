@@ -1,5 +1,6 @@
 <script>
 import globals from '../globals';
+import * as navigate from '../navigate';
 
 let keyboardLayout;
 // It's a key but it's also the key, geddit?
@@ -15,23 +16,23 @@ const layoutTopLeftKey = {
 console.assert(globals.currentParticipantID);
 
 
-/**
- *
- */
+// TODO: auto-advance when the right thing is pressed?
 function advanceWhenValidLayoutSelected(event) {
+  event.preventDefault();
+
   if (layoutTopLeftKey[keyboardLayout] !== keykey) {
     alert('That is incorrect!');
-    event.preventDefault();
   }
 
   globals.layoutUnderTest = keyboardLayout;
+  navigate.toLayoutStart(keyboardLayout);
 }
 
 </script>
 
 <h1> Starting the trial: </h1>
 
-<form action="/start-trial" on:submit={advanceWhenValidLayoutSelected}>
+<form on:submit={advanceWhenValidLayoutSelected}>
   <label for="select-layout"> Select the keyboard layout </label>
   <select id="select-layout" bind:value={keyboardLayout}>
     <!-- TODO: only display layouts we have not seen yet! -->
