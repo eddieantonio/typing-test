@@ -22,6 +22,7 @@ function advanceWhenValidLayoutSelected(event) {
 
   if (layoutTopLeftKey[keyboardLayout] !== keykey) {
     alert('That is incorrect!');
+    return;
   }
 
   globals.layoutUnderTest = keyboardLayout;
@@ -45,7 +46,9 @@ function advanceWhenValidLayoutSelected(event) {
       question: </p>
 
   <label for="key"> What is the key at the top-left corner of this layout? </label>
-  <input id="key" type="text" bind:value={keykey}>
+  <input id="key" type="text" bind:value={keykey} required
+    autocomplete"off" spellcheck="false" autocorrect="off"
+  >
 
   <button type="submit">Continue</button>
 </form>
