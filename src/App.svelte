@@ -1,10 +1,10 @@
 <script>
-import {Router, Route, Link} from 'svero';
+  import {Router, Route, Link} from 'svero';
 
-import EnterParticipantID from './pages/EnterParticipantID.svelte';
-// TODO: rename this component:
-import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
-import TypingTest from './pages/TypingTest.svelte';
+  import * as navigate from './navigate';
+  import EnterParticipantID from './pages/EnterParticipantID.svelte';
+  import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
+  import TypingTest from './pages/TypingTest.svelte';
 </script>
 
 <!-- https://github.com/kazzkiq/svero#usage -->
@@ -20,7 +20,7 @@ import TypingTest from './pages/TypingTest.svelte';
       continueTo: '/layout'
     }}>
       <h1> TODO: instructions </h1>
-      <Link href="/layout">Continue</Link> 
+      <Link href="/layout">Continue</Link>
     </Route>
 
     <!-- The researcher then selects a layout: -->
@@ -29,18 +29,23 @@ import TypingTest from './pages/TypingTest.svelte';
     <!-- The researcher hands it back and the instructions screen shows up -->
     <Route path="/layout/:layout" exact>
       <h1> TODO: instructions to do timed practice </h1>
+      <button on:click={navigate.toCurrentLayoutPractice}>Practice</button>
     </Route>
 
     <Route path="/layout/:layout/practice" exact>
       <h1> TODO: here, the participant practices for some time</h1>
+      <button on:click={navigate.toTestCurrentLayout}>Done practice</button>
     </Route>
 
     <Route path="/layout/:layout/sentence" exact>
       <h1> TODO: the participant is asked if they want to begin the test proper. </h1>
+      <button on:click={() => navigate.toPrimeTestSentence(1)}>Begin</button>
     </Route>
 
     <Route path="/layout/:layout/sentence/:sentence_id" exact>
       <h1> TODO: the participant is primed with the sentence for some time...  </h1>
+      <p> After some time, the sentence just APPEARS! </p>
+      <button on:click={() => navigate.toTypeSentence(1)}>Start typing... </button>
     </Route>
 
     <!-- Then the participant is asked to type it exactly as it looks -->
