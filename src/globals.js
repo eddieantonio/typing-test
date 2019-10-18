@@ -37,7 +37,7 @@ export class Globals {
   constructor() {
     this._currentParticipantID = new LocalStorageVariable('currentParticipantID');
     this._currentKeyboardLayout = new LocalStorageVariable('layoutUnderTest');
-    this._currentTrial = new LocalStorageVariable('currentTrial ');
+    this._currentSentenceID = new LocalStorageVariable('currentSentenceID');
   }
 
   get currentParticipantID() {
@@ -57,12 +57,12 @@ export class Globals {
     return this._currentKeyboardLayout.set(value);
   }
 
-  get currentTrial() {
-    return Number(this._currentTrial.get());
+  get currentSentenceID() {
+    return Number(this.currentSentenceID.get());
   }
 
-  set currentTrial(value) {
-    return this._currentTrial.set(value);
+  set currentSentenceID(value) {
+    return this.currentSentenceID.set(value);
   }
 
   logTrial(events, buffer) {

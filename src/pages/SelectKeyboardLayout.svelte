@@ -41,7 +41,7 @@ function advanceWhenValidLayoutSelected(event) {
 
 </script>
 
-<h1> Starting the trial: </h1>
+<h1> Test a keyboard layout </h1>
 
 <form on:submit={advanceWhenValidLayoutSelected}>
   <label for="select-layout"> Select the keyboard layout </label>
@@ -57,7 +57,7 @@ function advanceWhenValidLayoutSelected(event) {
 
   <label for="key"> What is the key at the top-left corner of this layout? </label>
   <input id="key" type="text" bind:value={keykey} required
-    on:input={autoAdvance} 
+    on:input={autoAdvance}
     autocomplete="off" spellcheck="false" autocorrect="off"
   >
 
