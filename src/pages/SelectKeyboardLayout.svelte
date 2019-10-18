@@ -18,8 +18,15 @@ if (!globals.currentParticipantID) {
   setTimeout(navigate.toSelectParticipantID, 0);
 }
 
+function autoAdvance() {
+  if (layoutTopLeftKey[keyboardLayout] !== keykey) {
+    return;
+  }
 
-// TODO: auto-advance when the right thing is pressed?
+  globals.layoutUnderTest = keyboardLayout;
+  navigate.toLayoutStart(keyboardLayout);
+}
+
 function advanceWhenValidLayoutSelected(event) {
   event.preventDefault();
 
@@ -50,6 +57,7 @@ function advanceWhenValidLayoutSelected(event) {
 
   <label for="key"> What is the key at the top-left corner of this layout? </label>
   <input id="key" type="text" bind:value={keykey} required
+    on:input={autoAdvance} 
     autocomplete="off" spellcheck="false" autocorrect="off"
   >
 
