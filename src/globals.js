@@ -58,20 +58,20 @@ export class Globals {
   }
 
   get currentSentenceID() {
-    return Number(this.currentSentenceID.get());
+    return Number(this._currentSentenceID.get());
   }
 
   set currentSentenceID(value) {
-    return this.currentSentenceID.set(value);
+    return this._currentSentenceID.set(value);
   }
 
   logTrial(events, buffer) {
-    let trial = globals.currentTrial;
-    console.assert(trial && trial > 0);
+    let sentenceID = globals.currentSentenceID;
+    console.assert((sentenceID != undefined) && (sentenceID >= 0));
     console.assert(this.currentParticipantID);
     console.assert(this.layoutUnderTest);
 
-    let key = `${this.currentParticipantID}:${this.layoutUnderTest}:${trial}`;
+    let key = `${this.currentParticipantID}:${this.layoutUnderTest}:${sentenceID}`;
     let keypresses = new LocalStorageVariable(key);
     keypresses.set(JSON.stringify({ events, buffer }));
   }

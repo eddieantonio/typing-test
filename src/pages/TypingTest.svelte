@@ -25,6 +25,7 @@
   let sentenceID = router.params['sentence_id'];
   let sentence = sentences[sentenceID];
   console.assert(sentence, 'did not get a proper sentence');
+  globals.currentSentenceID = sentenceID;
 
   /**
    * The typing buffer.

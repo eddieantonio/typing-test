@@ -39,13 +39,13 @@
 
     <Route path="/layout/:layout/sentence" exact>
       <h1> TODO: the participant is asked if they want to begin the test proper. </h1>
-      <button on:click={() => navigate.toPrimeTestSentence(1)}>Begin</button>
+      <button on:click={() => navigate.toPrimeTestSentence(0)}>Begin</button>
     </Route>
 
     <Route path="/layout/:layout/sentence/:sentence_id" exact>
       <h1> TODO: the participant is primed with the sentence for some time...  </h1>
       <p> After some time, the sentence just APPEARS! </p>
-      <button on:click={() => navigate.toTypeSentence(1)}>Start typing... </button>
+      <button on:click={() => navigate.toTypeSentence(0)}>Start typing... </button>
     </Route>
 
     <!-- Then the participant is asked to type it exactly as it looks -->
