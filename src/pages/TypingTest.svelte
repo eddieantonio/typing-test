@@ -1,17 +1,42 @@
 <script>
   import globals from '../globals';
   import {sentences} from '../sentences';
-  
+
+  /**
+   * Will be passed from the router.
+   *
+   * See: https://github.com/kazzkiq/svero#usage
+   */
+  export let router = {};
+
+  /**
+   * Stores the timestamp of when the input box first received focus.
+   * This is when we start measuring typing speed.
+   * @type Number | undefined
+   */
   let firstTimeFocused = null;
 
-  // TODO: set trial from URL?
-  // TODO: rename "trial" to "sentence"
-  let trial = globals.currentTrial = 1;
+  /**
+   * The layout under test.
+   */
+  let keyboardLayout = router.params['layout'];
+  console.assert(keyboardLayout === globals.layoutUnderTest, 'testing for the wrong keyboard?');
 
-  let sentence = sentences[trial];
+  let sentenceID = router.params['sentence_id'];
+  let sentence = sentences[sentenceID];
   console.assert(sentence, 'did not get a proper sentence');
 
+  /**
+   * The typing buffer.
+   * This will be recorded at the end of the session.
+   *
+   * @type string
+   */
   let buffer;
+  /**
+   * A log of events of the following structure:
+   * { event: string, data: string | null, timestamp: number }
+   */
   const events = [];
 
   function recordFirstTimeFocused(event) {
