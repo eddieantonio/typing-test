@@ -7,6 +7,10 @@ import globals from './globals';
  * Hence, this file is intrinsically coupled to that file.
  */
 
+export function toSelectParticipantID() {
+  navigateTo('/');
+}
+
 /**
  * Goes to the instruction page once a layout is chosen.
  */

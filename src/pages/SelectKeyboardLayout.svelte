@@ -12,8 +12,11 @@ const layoutTopLeftKey = {
   keyman: "\u157D",      // ᕽ U+157D CANADIAN SYLLABICS HK
 };
 
-// TODO: redirect to home page if we don't have a paricipant ID!
-console.assert(globals.currentParticipantID);
+if (!globals.currentParticipantID) {
+  console.warn(`Got to ${window.location.pathname} without a participant ID!  Redirecting...`);
+  /** Do this on the next tick, or else svero gets confused. */
+  setTimeout(navigate.toSelectParticipantID, 0);
+}
 
 
 // TODO: auto-advance when the right thing is pressed?
