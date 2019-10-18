@@ -1,12 +1,15 @@
 <script>
   import globals from '../globals';
-
-  // TODO: get current sentence from... elsewhere.
-  let sentence = "ᑖᐻ";
+  import {sentences} from '../sentences';
+  
   let firstTimeFocused = null;
 
   // TODO: set trial from URL?
+  // TODO: rename "trial" to "sentence"
   let trial = globals.currentTrial = 1;
+
+  let sentence = sentences[trial];
+  console.assert(sentence, 'did not get a proper sentence');
 
   let buffer;
   const events = [];
