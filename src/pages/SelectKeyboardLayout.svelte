@@ -47,7 +47,7 @@ function advanceWhenValidLayoutSelected(event) {
 
   <label for="key"> What is the key at the top-left corner of this layout? </label>
   <input id="key" type="text" bind:value={keykey} required
-    autocomplete"off" spellcheck="false" autocorrect="off"
+    autocomplete="off" spellcheck="false" autocorrect="off"
   >
 
   <button type="submit">Continue</button>
