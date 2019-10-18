@@ -3,7 +3,26 @@
 html {
   font-family: Noto Sans, Helvetica Neue, Arial, Gadugi, Euphemia, Euphemia UCAS, sans-serif;
   font-size: larger;
+  min-height: 100vh;
 }
+
+button {
+  font-size: inherit;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+
+  font-size: large;
+
+  flex-direction: column;
+}
+
+main {
+  padding: 0 .5em;
+}
+
 
 .the-sentence {
   font-weight: bold;
@@ -16,5 +35,5 @@ html {
   font-size: larger;
   width: 100%;
   line-height: 1.5;
-  min-height: 50vh;
+  min-height: 10em;
 }
