@@ -57,7 +57,8 @@
     <Route path="/data" exact component={DumpData}></Route>
 
     <Route path="*">
-    
+      <h1>404</h1>
+      <Link href="/" className="btn">Go to home page.</Link>
     </Route>
   </Router>
 </main>
