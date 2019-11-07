@@ -8,13 +8,14 @@
 const fs = require('fs');
 const assert = require('assert').strict;
 
-let [_node, _script, filename] = process.argv;
+let [_node, _script, filename, outName] = process.argv;
 assert.ok(filename, 'must provide a filename');
+assert.ok(outName, 'must provide a destination');
 
 let contents = fs.readFileSync(filename, 'utf8');
 
 let [header, ...rows] = contents.split('\n');
-assert.equal(header.toLowerCase(), 'sro', 'syllabics');
+assert.equal(header.toLowerCase(), 'sro\tsyllabics');
 
 
 let sentences = [];
@@ -29,4 +30,4 @@ for (let row of rows) {
 }
 
 let jsonified = JSON.stringify({ sentences });
-process.stdout.write(jsonified + '\n');
+fs.writeFileSync(outName, jsonified + '\n', 'utf8');
