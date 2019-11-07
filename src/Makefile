@@ -1,2 +1,2 @@
 sentences.json: trials.tsv
-	./libexec/tsv2json.js $< $@
+	node libexec/tsv2json.js $< $@

@@ -24,6 +24,7 @@
       <Link href="/layout">Continue</Link>
     </Route>
 
+
     <!-- The researcher then selects a layout: -->
     <Route path="/layout" exact component={SelectKeyboardLayout} />
 
@@ -52,6 +53,11 @@
     <!-- Then the participant is asked to type it exactly as it looks -->
     <Route path="/layout/:layout/sentence/:sentence_id/type" exact component={TypingTest} />
 
+    <!-- Route for me to email the data to myself ¯\_(ツ)_/¯ -->
     <Route path="/data" exact component={DumpData}></Route>
+
+    <Route path="*">
+    
+    </Route>
   </Router>
 </main>
