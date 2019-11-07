@@ -1,2 +1,2 @@
-sentences.json: sentences.yaml
-	npx yaml2json --save $<
+sentences.json: trials.tsv
+	./libexec/tsv2json.js $< > $@
