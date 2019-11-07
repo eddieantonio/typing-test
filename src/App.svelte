@@ -5,6 +5,7 @@
   import EnterParticipantID from './pages/EnterParticipantID.svelte';
   import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
   import TypingTest from './pages/TypingTest.svelte';
+  import DumpData from './pages/DumpData.svelte';
 </script>
 
 <!-- https://github.com/kazzkiq/svero#usage -->
@@ -50,5 +51,7 @@
 
     <!-- Then the participant is asked to type it exactly as it looks -->
     <Route path="/layout/:layout/sentence/:sentence_id/type" exact component={TypingTest} />
+
+    <Route path="/data" exact component={DumpData}></Route>
   </Router>
 </main>
