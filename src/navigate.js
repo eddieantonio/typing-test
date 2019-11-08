@@ -15,7 +15,15 @@ export function toSelectParticipantID() {
  * Goes to the instruction page once a layout is chosen.
  */
 export function toLayoutStart(layout) {
+  console.assert(layout);
   navigateTo(`/layout/${layout}`);
+}
+
+/**
+ * Choose a layout.
+ */
+export function toChooseLayout() {
+  navigateTo('/layout');
 }
 
 /**
@@ -26,7 +34,7 @@ export function toCurrentLayoutPractice() {
   let layout = globals.layoutUnderTest;
 
   if (!layout) {
-    navigateTo('/layout');
+    return toChooseLayout();
   }
 
   navigateTo(`/layout/${layout}/practice`);
@@ -71,4 +79,11 @@ export function toTypeSentence(sentenceID) {
   }
 
   navigateTo(`/layout/${layout}/sentence/${sentenceID}/type`);
+}
+
+export function toTypeCurrentSentence() {
+  let sentenceID = globals.currentSentenceID;
+  console.assert(sentenceID !== undefined);
+
+  return toTypeSentence(sentenceID);
 }

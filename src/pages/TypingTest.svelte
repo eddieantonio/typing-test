@@ -1,5 +1,6 @@
 <script>
   import globals from '../globals';
+  import * as navigate from '../navigate';
   import {sentences} from '../sentences';
 
   /**
@@ -25,7 +26,11 @@
   let sentenceID = router.params['sentence_id'];
   let sentence = sentences[sentenceID];
   console.assert(sentence, 'did not get a proper sentence');
-  globals.currentSentenceID = sentenceID;
+
+  if (globals.currentSentenceID !== sentenceID) {
+    console.warn(`Current page for sentence ${sentenceID} does not match
+      current sentence ID ${globals.currentSentenceID}`);
+  }
 
   /**
    * The typing buffer.
@@ -70,7 +75,8 @@
     console.table(events);
     globals.logTrial(events, buffer);
 
-    alert('Not implemented :/');
+    // Fetch the next sentence or continue to the next layout.
+    navigate.toTestCurrentLayout();
   }
 </script>
 

@@ -21,17 +21,19 @@
 
     // Time to figure out what sentence to pick.
     let sentencesRemaining = globals.sentenceIDsForCurrentLayout;
-    if (sentencesRemaining.size() === 0) {
+    if (sentencesRemaining.size === 0) {
       // No more sentences? We shouldn't be at this page anymore!
       hasSentencesRemaining = false;
       return;
     }
 
-    global.currentSentenceID = choose(sentencesRemaining);
+    globals.currentSentenceID = choose(sentencesRemaining);
   }
 
   function goToNextSentence() {
-    navigate.toPrimeTestSentence(0);
+    let sentenceID = globals.currentSentenceID;
+    console.assert(sentenceID !== undefined);
+    navigate.toPrimeTestSentence(sentenceID);
   }
 
   function choose(iterable) {
@@ -58,7 +60,7 @@
 {:else}
   <h1> 🎉 You're done all of the sentences for the current layout! </h1>
 
-  <button on:click={navigate.toLayoutStart}>
+  <button on:click={navigate.toChooseLayout}>
     Continue to the next layout!
   </button>
 {/if}

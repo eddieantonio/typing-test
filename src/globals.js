@@ -59,7 +59,12 @@ export class Globals {
   }
 
   get currentSentenceID() {
-    return Number(this._currentSentenceID.get());
+    let value = this._currentSentenceID.get()
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    return Number(value);
   }
 
   /**
