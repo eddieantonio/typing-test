@@ -42,6 +42,8 @@ export function toTestCurrentLayout() {
     navigateTo('/layout');
   }
 
+  // TODO: something clever here.
+
   navigateTo(`/layout/${layout}/sentence`);
 }
 

@@ -46,7 +46,7 @@
 
     <Route path="/layout/:layout/sentence/:sentence_id" exact>
       <h1> TODO: the participant is primed with the sentence for some time...  </h1>
-      <p> After some time, the sentence just APPEARS! </p>
+      <p> After some time, the opportunity to type just appears! </p>
       <button on:click={() => navigate.toTypeSentence(0)}>Start typing... </button>
     </Route>
 

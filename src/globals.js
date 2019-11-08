@@ -38,6 +38,7 @@ export class Globals {
     this._currentParticipantID = new LocalStorageVariable('currentParticipantID');
     this._currentKeyboardLayout = new LocalStorageVariable('layoutUnderTest');
     this._currentSentenceID = new LocalStorageVariable('currentSentenceID');
+    this._sentencesForAllLayouts = new LocalStorageVariable('sentencesToType');
   }
 
   get currentParticipantID() {
@@ -61,19 +62,113 @@ export class Globals {
     return Number(this._currentSentenceID.get());
   }
 
+  /**
+   * Call this prior to using sentenceIDsForCurrentLayout!!!
+   */
+  initializeSentences(layout2sentenceIDs) {
+    console.assert(this.currentParticipantID);
+    this._updateLayout2SentenceIDs(layout2sentenceIDs);
+  }
+
+  /**
+   * Returns a set of sentences that we need to have typed in the current
+   * layout.
+   */
+  get sentenceIDsForCurrentLayout() {
+    let currentLayout = this.layoutUnderTest;
+    console.assert(currentLayout);
+
+    let sentenceIDs = this._layout2SentenceIDs;
+    console.assert(currentLayout in this._layout2SentenceIDs);
+    return this._layout2SentenceIDs[currentLayout];
+  }
+
   set currentSentenceID(value) {
     return this._currentSentenceID.set(value);
   }
 
+  /**
+   * Logs that this sentence is finished!
+   *
+   * This has multiple effects on the state:
+   *
+   * - a new, unique key is saved to the database for the events
+   * - the current sentence ID is cleared
+   * - the current sentence ID is marked as completed
+   *
+   * @param {Array} events -- the various "focus"/""keydown" events that
+   *                          must be persisted
+   * @param {String} buffer -- the final buffer. This is used to compare
+   *                           against the expected results.
+   */
   logTrial(events, buffer) {
+    console.assert(this.currentParticipantID);
+
     let sentenceID = globals.currentSentenceID;
     console.assert((sentenceID != undefined) && (sentenceID >= 0));
-    console.assert(this.currentParticipantID);
-    console.assert(this.layoutUnderTest);
 
+    let currentLayout = this.layoutUnderTest;
+    console.assert(currentLayout);
+
+    let layout2sentenceIDs = this._layout2SentenceIDs;
+    let sentenceIDs = layout2sentenceIDs[currentLayout];
+    console.assert(sentenceIDs.has(sentenceID));
+
+    /* Log the events to a unique key. */
     let key = `${this.currentParticipantID}:${this.layoutUnderTest}:${sentenceID}`;
     let keypresses = new LocalStorageVariable(key);
+    console.assert(!keypresses.get());
     keypresses.set(JSON.stringify({ events, buffer }));
+
+    /* Remove the sentence ID from the set: */
+    sentenceIDs.delete(sentenceID);
+    this._updateLayout2SentenceIDs(layout2sentenceIDs);
+
+    this._currentSentenceID.clear();
+  }
+
+  /**
+   * Tears down all state related to the current participant.
+   */
+  finalizeExperiment() {
+    // TODO: what else needs to be cleared out?
+    this._sentencesForAllLayouts.clear();
+  }
+
+  /**
+   * Return a data structure:
+   *
+   * {
+   *    "layout": Set([0, 1, 2, 3])
+   * }
+   */
+  get _layout2SentenceIDs() {
+    let layout2array = JSON.parse(this._sentencesForAllLayouts.get());
+    let layout2set = {};
+    for (let [layout, array] of Object.entries(layout2array)) {
+      layout2set[layout] = new Set(array);
+    }
+
+    return layout2set;
+  }
+
+  _updateLayout2SentenceIDs(updatedLayout2sentenceIDs) {
+    // TODO: sanity check some things.
+    // case 1: current value is clear; this is a new sentence set
+    //         ensure it looks right
+    // case 2: we're updating the sentence
+    //         the total number of IDs should decrease by exactly one.
+
+    let asJSON = JSON.stringify(updatedLayout2sentenceIDs, (key, value) => {
+      // turn the sets to arrays
+      if (value instanceof Set) {
+        return Array.from(value);
+      }
+
+      return value;
+    });
+
+    this. _sentencesForAllLayouts.set(asJSON);
   }
 }
 
