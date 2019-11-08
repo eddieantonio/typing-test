@@ -63,14 +63,6 @@ export class Globals {
   }
 
   /**
-   * Call this prior to using sentenceIDsForCurrentLayout!!!
-   */
-  initializeSentences(layout2sentenceIDs) {
-    console.assert(this.currentParticipantID);
-    this._updateLayout2SentenceIDs(layout2sentenceIDs);
-  }
-
-  /**
    * Returns a set of sentences that we need to have typed in the current
    * layout.
    */
@@ -85,6 +77,14 @@ export class Globals {
 
   set currentSentenceID(value) {
     return this._currentSentenceID.set(value);
+  }
+
+  /**
+   * Call this prior to using sentenceIDsForCurrentLayout!!!
+   */
+  initializeSentences(layout2sentenceIDs) {
+    console.assert(this.currentParticipantID);
+    this._updateLayout2SentenceIDs(layout2sentenceIDs);
   }
 
   /**
