@@ -2,6 +2,7 @@
   import globals from '../globals';
   import * as navigate from '../navigate';
   import {sentences} from '../sentences';
+  import {depoint} from '../depoint';
 
   /**
    * Will be passed from the router.
@@ -24,8 +25,18 @@
   console.assert(keyboardLayout === globals.layoutUnderTest, 'testing for the wrong keyboard?');
 
   let sentenceID = router.params['sentence_id'];
-  let sentence = sentences[sentenceID];
+  let sentence = (function () {
+    let rawSentence = sentences[sentenceID];
+    /* The FirstVoices keyboard does not support pointed text, so get rid of
+     *those points! */
+    if (keyboardLayout === 'firstvoices') {
+      return depoint(rawSentence);
+    }
+    return rawSentence;
+  }());
+
   console.assert(sentence, 'did not get a proper sentence');
+
 
   if (globals.currentSentenceID !== sentenceID) {
     console.warn(`Current page for sentence ${sentenceID} does not match
