@@ -67,6 +67,10 @@ export class Globals {
     return Number(value);
   }
 
+  set currentSentenceID(value) {
+    return this._currentSentenceID.set(value);
+  }
+
   /**
    * Returns a set of sentences that we need to have typed in the current
    * layout.
@@ -80,9 +84,20 @@ export class Globals {
     return this._layout2SentenceIDs[currentLayout];
   }
 
-  set currentSentenceID(value) {
-    return this._currentSentenceID.set(value);
+  get layoutsRemaining() {
+    let layouts = new Set();
+    let everythingRemaining = this._layout2SentenceIDs;
+
+    for (let [layout, sentences] of Object.entries(everythingRemaining)) {
+      if (sentences.size > 0) {
+        layouts.add(layout);
+      }
+    }
+
+    return layouts;
   }
+
+  /****************************** Update state ******************************/
 
   /**
    * Call this prior to using sentenceIDsForCurrentLayout!!!

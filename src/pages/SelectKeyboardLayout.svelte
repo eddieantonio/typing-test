@@ -18,6 +18,18 @@ if (!globals.currentParticipantID) {
   setTimeout(navigate.toSelectParticipantID, 0);
 }
 
+let layouts = Array.from(function* () {
+  let layoutsRemaining = globals.layoutsRemaining;
+
+  for (let layout of Object.keys(layoutTopLeftKey)) {
+    yield {
+      value: layout,
+      display: `Keyboard “${layoutToCodeName(layout)}“`,
+      disabled: !layoutsRemaining.has(layout)
+    };
+  }
+}());
+
 function autoAdvance() {
   if (layoutTopLeftKey[keyboardLayout] !== keykey) {
     return;
@@ -39,6 +51,10 @@ function advanceWhenValidLayoutSelected(event) {
   navigate.toLayoutStart(keyboardLayout);
 }
 
+function layoutToCodeName(layoutID) {
+  return layoutID[0].toUpperCase();
+}
+
 </script>
 
 <h1> Test a keyboard layout </h1>
@@ -46,10 +62,9 @@ function advanceWhenValidLayoutSelected(event) {
 <form on:submit={advanceWhenValidLayoutSelected}>
   <label for="select-layout"> Select the keyboard layout </label>
   <select id="select-layout" bind:value={keyboardLayout}>
-    <!-- TODO: only display layouts we have not seen yet! -->
-    <option value="firstvoices">Keyboard “F”</option>
-    <option value="gboard">Keyboard “G”</option>
-    <option value="keyman">Keyboard “K”</option>
+    {#each layouts as {value, display, disabled}}
+    <option {value} {disabled}>{display}</option>
+    {/each}
   </select>
 
   <p> Switch to the correct keyboard layout, then answer the following
