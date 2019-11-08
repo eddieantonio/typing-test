@@ -24,7 +24,7 @@
   let keyboardLayout = router.params['layout'];
   console.assert(keyboardLayout === globals.layoutUnderTest, 'testing for the wrong keyboard?');
 
-  let sentenceID = router.params['sentence_id'];
+  let sentenceID = Number(router.params['sentence_id']);
   let sentence = (function () {
     let rawSentence = sentences[sentenceID];
     /* The FirstVoices keyboard does not support pointed text, so get rid of
