@@ -27,6 +27,13 @@ export function toChooseLayout() {
 }
 
 /**
+ * Done
+ */
+export function toEnd() {
+  navigateTo('/complete');
+}
+
+/**
  * Goes to the timed practice page, so that the participant can practice the
  * current layout.
  */

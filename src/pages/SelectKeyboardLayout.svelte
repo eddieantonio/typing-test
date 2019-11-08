@@ -18,9 +18,10 @@ if (!globals.currentParticipantID) {
   setTimeout(navigate.toSelectParticipantID, 0);
 }
 
-let layouts = Array.from(function* () {
-  let layoutsRemaining = globals.layoutsRemaining;
+let layoutsRemaining = globals.layoutsRemaining;
+let finished = layoutsRemaining.size === 0;
 
+let layouts = Array.from(function* () {
   for (let layout of Object.keys(layoutTopLeftKey)) {
     yield {
       value: layout,
@@ -29,6 +30,11 @@ let layouts = Array.from(function* () {
     };
   }
 }());
+
+if (finished) {
+  navigate.toEnd();
+}
+
 
 function autoAdvance() {
   if (layoutTopLeftKey[keyboardLayout] !== keykey) {
