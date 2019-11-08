@@ -6,6 +6,7 @@
   import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
   import TypingTest from './pages/TypingTest.svelte';
   import DumpData from './pages/DumpData.svelte';
+  import PriorToSentence from './pages/PriorToSentence.svelte';
 </script>
 
 <!-- https://github.com/kazzkiq/svero#usage -->
@@ -39,10 +40,7 @@
       <button on:click={navigate.toTestCurrentLayout}>Done practice</button>
     </Route>
 
-    <Route path="/layout/:layout/sentence" exact>
-      <h1> TODO: the participant is asked if they want to begin the test proper. </h1>
-      <button on:click={() => navigate.toPrimeTestSentence(0)}>Begin</button>
-    </Route>
+    <Route path="/layout/:layout/sentence" exact component={PriorToSentence} />
 
     <Route path="/layout/:layout/sentence/:sentence_id" exact>
       <h1> TODO: the participant is primed with the sentence for some time...  </h1>
