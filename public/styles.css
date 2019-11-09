@@ -33,7 +33,7 @@ body {
 }
 
 main {
-  padding: 1em .5em;
+  padding: 1rem .5rem;
 }
 
 button {
@@ -41,7 +41,7 @@ button {
 }
 
 p, h1, h2 {
-  margin: .75em 1em 0;
+  margin: .75rem 1rem 0;
 }
 
 /*************************** The important parts ***************************/
@@ -52,21 +52,21 @@ p, h1, h2 {
   font-size: larger;
   font-weight: bold;
   line-height: 1.25;
-  word-spacing: 1em; /* to make <SP> and <NNBSP> stand out */
+  word-spacing: 1ch; /* to make <SP> and <NNBSP> stand out */
 }
 
 .the-sentence {
-  margin: .5em 1em;
-  padding-right: 1em;
+  margin: .5rem 1rem;
+  padding-right: 1rem;
 }
 
 .type-syllabics {
-  padding: .5em calc(1em - 1px);
-  width: calc(100% - 1em);
+  padding: .5rem calc(1rem - 1px);
+  width: calc(100% - 1rem);
   border-width: 1px;
   margin: 0;
 
-  min-height: 10em;
+  min-height: 10rem;
 }
 
 textarea.type-syllabics {
