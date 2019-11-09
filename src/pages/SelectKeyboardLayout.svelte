@@ -32,7 +32,9 @@ let layouts = Array.from(function* () {
 }());
 
 if (finished) {
-  navigate.toEnd();
+  // If we DON'T do this on the next tick (what setTimeout(..., 0) does)
+  // then both the "select keyboard" page and the complete page show up.
+  setTimeout(navigate.toEnd, 0);
 }
 
 
