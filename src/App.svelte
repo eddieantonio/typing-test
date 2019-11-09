@@ -5,6 +5,7 @@
   import EnterParticipantID from './pages/EnterParticipantID.svelte';
   import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
   import TypingTest from './pages/TypingTest.svelte';
+  import PresentStimulus from './pages/PresentStimulus.svelte';
   import DumpData from './pages/DumpData.svelte';
   import PriorToSentence from './pages/PriorToSentence.svelte';
 </script>
@@ -48,11 +49,11 @@
 
     <!-- The sentence is primed (displayed) for some amount of time. After a
          certain amount of time, it just jumps to the next screen. -->
-    <Route path="/layout/:layout/sentence/:sentence_id" exact>
-      <h1> TODO: the participant is primed with the sentence for some time...  </h1>
-      <p> After some time, the opportunity to type just appears! </p>
-      <button on:click={navigate.toTypeCurrentSentence}>Start typing... </button>
-    </Route>
+    <Route
+      path="/layout/:layout/sentence/:sentence_id"
+      exact
+      component={PresentStimulus}
+    />
 
     <!-- Then the participant is asked to type it exactly as it looks -->
     <Route path="/layout/:layout/sentence/:sentence_id/type" exact component={TypingTest} />

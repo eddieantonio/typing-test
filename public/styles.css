@@ -40,6 +40,10 @@ button {
   font-size: inherit;
 }
 
+p, h1, h2 {
+  margin: .75em 1em 0;
+}
+
 /*************************** The important parts ***************************/
 
 /* the sentence and the typing thing need to match styles and spacing as much
@@ -67,4 +71,11 @@ button {
 
 textarea.type-syllabics {
   font-family: inherit;
+}
+
+.low-key.instructions {
+  font-size: normal;
+  font-style: italic;
+
+  color: #555;
 }
