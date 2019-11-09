@@ -43,8 +43,13 @@ button {
   font-size: inherit;
 }
 
-p, h1, h2 {
+p, h1, h2, form, main > button {
   margin: .75rem 1rem 0;
+}
+
+form > p {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /*************************** The important parts ***************************/
