@@ -2,9 +2,11 @@
   import globals from '../globals';
   import * as navigate from '../navigate';
   import Stimulus from '../components/Stimulus.svelte';
+  import {syllablesIn} from '../sentence-utils';
 
   /* Prime for this long before automatically advancing. */
-  const PRIMING_TIME = 15 * 1000; // in milliseconds
+  const SYLLABLES_PER_MINUTE = 447 - 69; // from https://iovs.arvojournals.org/article.aspx?articleid=2166061
+  const MILLISECONDS_PER_SYLLABLE = (60 * 1000) / SYLLABLES_PER_MINUTE;
 
   /**
    * Will be passed from the router.
@@ -17,11 +19,13 @@
   let keyboardLayout = router.params['layout'];
   console.assert(keyboardLayout === globals.layoutUnderTest, 'testing for the wrong keyboard?');
 
-  let sentenceID = Number(router.params['sentence_id']);
+  const sentenceID = Number(router.params['sentence_id']);
   if (globals.currentSentenceID !== sentenceID) {
     console.warn(`Current page for sentence ${sentenceID} does not match
       current sentence ID ${globals.currentSentenceID}`);
   }
+
+  const primingTime = syllablesIn(sentenceID) * MILLISECONDS_PER_SYLLABLE;
 
   /**
    * Advance to the next screen automatically.
@@ -29,7 +33,7 @@
   setTimeout(function goToNextScreen() {
     // Fetch the next sentence or continue to the next layout.
     navigate.toTypeSentence(sentenceID);
-  }, PRIMING_TIME);
+  }, primingTime);
 </script>
 
 <button disabled>Done</button>
