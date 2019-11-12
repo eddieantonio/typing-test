@@ -1,3 +1,8 @@
+import {sentences} from './sentences';
+
 export function syllablesIn(sentenceID) {
-  throw new Error('Not implemented');
+  let sentence = sentences[sentenceID];
+  let words = sentence.split(/[\s᙮]+/);
+  let nSyllables = words.reduce((acc, word) => acc + word.length, 0);
+  return nSyllables;
 }

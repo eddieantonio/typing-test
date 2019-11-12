@@ -26,6 +26,7 @@
   }
 
   const primingTime = syllablesIn(sentenceID) * MILLISECONDS_PER_SYLLABLE;
+  console.log(`Priming for ${primingTime}ms (${primingTime / 1000}s).`);
 
   /**
    * Advance to the next screen automatically.
