@@ -48,7 +48,7 @@
 </script>
 
 {#if hasSentencesRemaining}
-  <h1> TODO: the participant is asked if they want to begin the test proper. </h1>
+  <h1> Type a sentence </h1>
 
   {#if hasSelectedSentenceAlready}
     <!-- Something weird happened, and we already tried starting this sentence,
@@ -56,7 +56,9 @@
     <p class="welcome-back"> Welcome back! </p>
   {/if}
 
-  <button on:click={goToNextSentence}>Begin</button>
+  <p> Now is a good time for a break, if you need one 💤 </p>
+
+  <button on:click={goToNextSentence}>Start next sentence</button>
 {:else}
   <h1> 🎉 You're done all of the sentences for the current layout! </h1>
 
