@@ -121,7 +121,7 @@ export class Globals {
    * @param {String} buffer -- the final buffer. This is used to compare
    *                           against the expected results.
    */
-  logTrial(events, buffer) {
+  logTrial(stimulus, events, buffer) {
     console.assert(this.currentParticipantID);
 
     let sentenceID = globals.currentSentenceID;
@@ -138,7 +138,7 @@ export class Globals {
     let key = `${this.currentParticipantID}:${this.layoutUnderTest}:${sentenceID}`;
     let keypresses = new LocalStorageVariable(key);
     console.assert(!keypresses.get());
-    keypresses.set(JSON.stringify({ events, buffer }));
+    keypresses.set(JSON.stringify({ stimulus, events, buffer }));
 
     /* Remove the sentence ID from the set: */
     sentenceIDs.delete(sentenceID);

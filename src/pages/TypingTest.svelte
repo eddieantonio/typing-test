@@ -2,6 +2,7 @@
   import globals from '../globals';
   import * as navigate from '../navigate';
   import Stimulus from '../components/Stimulus.svelte';
+  import {getSentenceForLayout} from '../sentence-utils';
 
   /**
    * Will be passed from the router.
@@ -42,6 +43,8 @@
    */
   const events = [];
 
+  const sentence = getSentenceForLayout(sentenceID, keyboardLayout);
+
   function recordFirstTimeFocused(event) {
     let timestamp = performance.now()
     console.assert(firstTimeFocused === null);
@@ -70,7 +73,7 @@
     let timestamp = performance.now();
     events.push({event: 'done', data: null, timestamp});
     console.table(events);
-    globals.logTrial(events, buffer);
+    globals.logTrial(sentence, events, buffer);
 
     // Fetch the next sentence or continue to the next layout.
     navigate.toTestCurrentLayout();

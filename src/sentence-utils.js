@@ -12,7 +12,6 @@ export function syllablesIn(sentenceID) {
  *
  */
 export function getSentenceForLayout(sentenceID, keyboardLayout) {
-  debugger;
   let rawSentence = sentences[sentenceID];
   /* The FirstVoices keyboard does not support pointed text, so get rid of
    *those points! */
