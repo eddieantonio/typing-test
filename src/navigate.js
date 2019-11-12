@@ -44,7 +44,11 @@ export function toCurrentLayoutPractice() {
     return toChooseLayout();
   }
 
-  navigateTo(`/layout/${layout}/practice`);
+  // TODO: implement practice page!
+  //
+  // For now, the practice page is not implemented, so it is skipped and we go
+  // straight to the tests.
+  return toTestCurrentLayout();
 }
 
 /**

@@ -67,22 +67,7 @@
     <!-- The researcher then selects a layout: -->
     <Route path="/layout" exact component={SelectKeyboardLayout} />
 
-    <!-- The researcher hands it back -->
-    <!-- The participant must practice the layout for at least... some amount
-         of minutes. -->
-    <Route path="/layout/:layout" exact>
-      <h1> TODO: instructions to do timed practice </h1>
-      <button on:click={navigate.toCurrentLayoutPractice}>Practice</button>
-    </Route>
-
-    <!-- The participant must practice the layout for at least... some amount
-         of minutes. -->
-    <Route path="/layout/:layout/practice" exact>
-      <h1> TODO: here, the participant practices for some time</h1>
-      <button on:click={navigate.toTestCurrentLayout}>Done practice</button>
-    </Route>
-
-    <!-- After practicing, they are prompted to begin the test proper. -->
+    <!-- They are then prompted to do the test proper -->
     <Route path="/layout/:layout/sentence" exact component={PriorToSentence} />
 
     <!-- The sentence is primed (displayed) for some amount of time. After a
