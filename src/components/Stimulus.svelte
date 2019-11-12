@@ -1,20 +1,10 @@
 <script>
-  import {sentences} from '../sentences';
-  import {depoint} from '../depoint';
+  import {getSentenceForLayout} from '../sentence-utils';
 
   export let sentenceID;
   export let keyboardLayout;
 
-  let sentence = (function () {
-    let rawSentence = sentences[sentenceID];
-    /* The FirstVoices keyboard does not support pointed text, so get rid of
-     *those points! */
-    if (keyboardLayout === 'firstvoices') {
-      return depoint(rawSentence);
-    }
-    return rawSentence;
-  }());
-
+  let sentence = getSentenceForLayout(sentenceID, keyboardLayout);
   console.assert(sentence, 'did not get a proper sentence');
 </script>
 
