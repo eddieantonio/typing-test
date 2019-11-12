@@ -8,6 +8,8 @@
   import PresentStimulus from './pages/PresentStimulus.svelte';
   import DumpData from './pages/DumpData.svelte';
   import PriorToSentence from './pages/PriorToSentence.svelte';
+
+  import Facilitator from './components/Facilitator.svelte';
 </script>
 
 <!-- https://github.com/kazzkiq/svero#usage -->
@@ -22,8 +24,45 @@
     <Route path="/instructions" exact props={{
       continueTo: '/layout'
     }}>
-      <h1> TODO: instructions </h1>
-      <Link href="/layout">Continue</Link>
+      <h1> Instructions </h1>
+      <p> ᑕᑕᐚᐤ! </p>
+
+      <h2> Before we begin </h2>
+
+      <p> Whenever you see the <Facilitator/> icon, this means you need to go
+      call a <strong>facilitator</strong> before continuing. Either
+      <strong>Eddie</strong> or <strong>Atticus</strong> will be your
+      facilitator today, so make sure you go get them whenever you see the
+      <Facilitator/> icon! </p>
+
+      <h2> What you'll be doing today </h2>
+
+      <p> You are helping us evaluate <strong> Cree syllabics keyboards </strong>
+      for smartphones. We have <strong>three</strong> different keyboard
+      layouts installed on this phone. You task is to use all three layouts to
+      <strong>type a few sample sentences in Cree</strong>. After testing all
+      three, you will be given a <strong>short questionnaire</strong> to fill
+      out. </p>
+
+      <p><strong>Important</strong>: We are not testing <em>you</em> today;
+      we are testing the keyboards. We will be collecting data on how often
+      typos are made; however, typos are not your fault! That's the keyboard's
+      fault. </p>
+
+      <h2> Consent </h2>
+
+      <p> You should have signed the consent form by now. If not,
+      <Facilitator/> go get the facilitator to give you a consent form and fill
+      it out before continuing. </p>
+
+      <p> Your participation is completely voluntary. <strong>You may end your
+      participation at anytime for any reason without penalty</strong>. Any
+      data we collect from you will be immediately destroyed upon your
+      withdrawal from the study. </p>
+
+      <hr />
+
+      <Link href="/layout">Tap here to continue</Link>
     </Route>
 
     <!-- The researcher then selects a layout: -->
@@ -64,7 +103,7 @@
     <Route path="/complete" exact>
       <h1> ᑭᓇᓈᐢᑯᒥᑎᓈᐣ </h1>
       <p> You're done this part of the session!</p>
-      <p> The next part is a short questionaire. </p>
+      <p> The next part is a short questionnaire. </p>
       <p> <strong> Please call the facilitator to continue.</strong> </p>
     </Route>
 

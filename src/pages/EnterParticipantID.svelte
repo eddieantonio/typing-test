@@ -28,6 +28,7 @@
   }
 </script>
 
+<h1> 👨🏽‍🔬 Before test: </h1>
 <form on:submit={continueToInstructions}>
   <label for="partid"> Please enter your participant ID:
       <input type="number" id="partid" bind:value={participantID} required>
