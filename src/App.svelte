@@ -15,7 +15,7 @@
 <!-- https://github.com/kazzkiq/svero#usage -->
 <main>
   <Router>
-    <!-- Page for the researcher (i.e., me) -->
+    <!-- Page for the facilitator (i.e., me) -->
     <Route path="/" exact component={EnterParticipantID} props={{
       continueTo: '/instructions'
     }} />
@@ -24,8 +24,7 @@
     <Route path="/instructions" exact props={{
       continueTo: '/layout'
     }}>
-      <h1> Instructions </h1>
-      <p> ᑕᑕᐚᐤ! </p>
+      <h1> ᑕᑕᐚᐤ! </h1>
 
       <h2> Before we begin </h2>
 

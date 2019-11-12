@@ -2,6 +2,8 @@
 import globals from '../globals';
 import * as navigate from '../navigate';
 
+import Facilitator from '../components/Facilitator.svelte';
+
 let keyboardLayout;
 // It's a key but it's also the key, geddit?
 let keykey;
@@ -65,18 +67,17 @@ function layoutToCodeName(layoutID) {
 
 </script>
 
-<h1> Test a keyboard layout </h1>
+<h1><Facilitator/> Ask the faciltator setup the keyboard now </h1>
 
 <form on:submit={advanceWhenValidLayoutSelected}>
-  <label for="select-layout"> Select the keyboard layout </label>
+  <label for="select-layout"> Select a keyboard layout </label>
   <select id="select-layout" bind:value={keyboardLayout}>
     {#each layouts as {value, display, disabled}}
     <option {value} {disabled}>{display}</option>
     {/each}
   </select>
 
-  <p> Switch to the correct keyboard layout, then answer the following
-      question: </p>
+  <p> Switch to the correct keyboard layout. </p>
 
   <label for="key"> What is the key at the top-left corner of this layout? </label>
   <input id="key" type="text" bind:value={keykey} required
