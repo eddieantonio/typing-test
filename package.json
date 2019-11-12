@@ -26,6 +26,7 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.1.0",
+    "rollup-plugin-workbox": "^4.0.0",
     "svelte": "^3.12.1"
   },
   "dependencies": {
