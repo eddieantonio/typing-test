@@ -1,6 +1,9 @@
+import DEPOINT_TABLE from './depointed.json';
 import {sentences} from './sentences';
-import {depoint} from './depoint';
 
+/**
+ * How many syllabies are in this word?
+ */
 export function syllablesIn(sentenceID) {
   let sentence = sentences[sentenceID];
   let words = sentence.split(/[\s᙮]+/);
@@ -23,4 +26,14 @@ export function getSentenceForLayout(sentenceID, keyboardLayout) {
     return depoint(rawSentence);
   }
   return rawSentence;
+}
+
+
+const pointed = Object.keys(DEPOINT_TABLE).join('');
+const pattern = new RegExp(`[${pointed}]`, 'g')
+
+export function depoint(syllabicsString) {
+  return syllabicsString.replace(pattern, (match) => {
+    return DEPOINT_TABLE[match];
+  });
 }
