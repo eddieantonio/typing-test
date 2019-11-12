@@ -101,9 +101,9 @@
     <!-- Congrats screen! -->
     <Route path="/complete" exact>
       <h1> ᑭᓇᓈᐢᑯᒥᑎᓈᐣ </h1>
-      <p> You're done this part of the session!</p>
+      <p> You're done testing keyboards!</p>
       <p> The next part is a short questionnaire. </p>
-      <p> <strong> Please call the facilitator to continue.</strong> </p>
+      <p> <strong> <Facilitator/> Please call the facilitator to continue.</strong> </p>
     </Route>
 
     <!-- Route for me to email the data to myself ¯\_(ツ)_/¯ -->
