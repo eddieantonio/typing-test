@@ -48,6 +48,16 @@ export function toCurrentLayoutPractice() {
 }
 
 /**
+ * The screen after practicing the keyboard. This will provide some extra
+ * practice.
+ */
+export function toAfterPractice() {
+  let layout = globals.layoutUnderTest;
+
+  navigateTo(`/layout/${layout}/practice/after`);
+}
+
+/**
  * Asks the participant to begin the test for the current keyboard.
  */
 export function toTestCurrentLayout() {
@@ -56,8 +66,6 @@ export function toTestCurrentLayout() {
   if (!layout) {
     navigateTo('/layout');
   }
-
-  // TODO: something clever here.
 
   navigateTo(`/layout/${layout}/sentence`);
 }

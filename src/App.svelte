@@ -8,6 +8,7 @@
   import PresentStimulus from './pages/PresentStimulus.svelte';
   import DumpData from './pages/DumpData.svelte';
   import PriorToSentence from './pages/PriorToSentence.svelte';
+  import Practice from './pages/Practice.svelte';
 
   import Facilitator from './components/Facilitator.svelte';
 </script>
@@ -71,16 +72,19 @@
     <!-- The participant must practice the layout for at least... some amount
          of minutes. -->
     <Route path="/layout/:layout" exact>
-      <h1> TODO: instructions to do timed practice </h1>
-      <button on:click={navigate.toCurrentLayoutPractice}>Practice</button>
+      <h1> Practice Mode</h1>
+      <p>
+        On the next screen, you will be given a sample sentence, and a box to
+        type text. Use this screen to <strong>practice using keyboard</strong>.
+        <strong>You will be given no instruction on how to use the current keyboard</strong>.
+        The practice period will last for <strong>a few minutes</strong>.
+      </p>
+      <button on:click={navigate.toCurrentLayoutPractice}>Start Practice</button>
     </Route>
 
     <!-- The participant must practice the layout for at least... some amount
          of minutes. -->
-    <Route path="/layout/:layout/practice" exact>
-      <h1> TODO: here, the participant practices for some time</h1>
-      <button on:click={navigate.toTestCurrentLayout}>Done practice</button>
-    </Route>
+    <Route path="/layout/:layout/practice" exact component={Practice} />
 
     <!-- After practicing, they are prompted to begin the test proper. -->
     <Route path="/layout/:layout/sentence" exact component={PriorToSentence} />
