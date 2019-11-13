@@ -25,7 +25,9 @@
 <p> Now is your chance to ask the <Facilitator/> facilitator specific
 questions on how to use the keyboard. </p>
 
-<button disabled={buffer.length === 0}>
+<button
+  disabled={buffer.length === 0}
+  on:click={navigate.toTestCurrentLayout}>
   Ready
 </button>
 

@@ -91,18 +91,14 @@ main > a:last-child {
 }
 
 @keyframes pulse-outline {
-  0% {
-    outline-width: .125rem;
-  }
   100% {
-    outline-width: .5rem;
+    box-shadow: 0 0 0 .40rem #9CF;
   }
 }
 
 button.draw-attention {
-  outline: #9CF .5rem auto;
-  outline-offset: -0.25rem;
-  animation: pulse-outline .5s ease-in infinite alternate;
+  box-shadow: 0 0 0 .20rem #9CF;
+  animation: pulse-outline .25s ease-in infinite alternate;
 }
 
 textarea.type-syllabics {
