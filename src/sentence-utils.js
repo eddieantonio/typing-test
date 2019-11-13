@@ -1,6 +1,9 @@
 import DEPOINT_TABLE from './depointed.json';
 import {sentences} from './sentences';
 
+const NNBSP = '\u202F';
+const FULL_STOP = '\u166E';
+
 /**
  * How many syllabies are in this word?
  */
@@ -20,10 +23,12 @@ export function getSentenceForLayout(sentenceID, keyboardLayout) {
    *those points! */
   if (keyboardLayout === 'firstvoices') {
     // TODO: this should also:
-    //  - remove periods
-    //  - remove NNBSP
     //  - turn CwV into CV+w-dot
-    return depoint(rawSentence);
+    //  - actually, firstvoices CAN write long vowels; just its w-dot is
+    //  stupid.
+    return depoint(rawSentence)
+      .replace(NNBSP, '')
+      .replace(FULL_STOP, '');
   }
   return rawSentence;
 }
@@ -32,6 +37,9 @@ export function getSentenceForLayout(sentenceID, keyboardLayout) {
 const pointed = Object.keys(DEPOINT_TABLE).join('');
 const pattern = new RegExp(`[${pointed}]`, 'g')
 
+/**
+ * Makes things pallatable for the first voices keyboard.
+ */
 export function depoint(syllabicsString) {
   return syllabicsString.replace(pattern, (match) => {
     return DEPOINT_TABLE[match];
