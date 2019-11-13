@@ -2,6 +2,7 @@
   import * as navigate from '../navigate';
   import Stimulus from '../components/Stimulus.svelte';
 
+  // TODO: rapid fire words
   const MINIMUM_PRACTICE_TIME = (1).minute;
 
   /**

@@ -5,8 +5,7 @@
   import {syllablesIn} from '../sentence-utils';
 
   /* Prime for this long before automatically advancing. */
-  const SYLLABLES_PER_MINUTE = 447 - 69; // from https://iovs.arvojournals.org/article.aspx?articleid=2166061
-  const MILLISECONDS_PER_SYLLABLE = (1).minute / SYLLABLES_PER_MINUTE;
+  const primingTime = (30).seconds;
 
   /**
    * Will be passed from the router.
@@ -25,7 +24,6 @@
       current sentence ID ${globals.currentSentenceID}`);
   }
 
-  const primingTime = syllablesIn(sentenceID) * MILLISECONDS_PER_SYLLABLE;
   console.log(`Priming for ${primingTime}ms (${primingTime / 1000}s).`);
 
   /**
