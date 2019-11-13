@@ -1,11 +1,15 @@
-import DEPOINT_TABLE from './depointed.json';
+import CWV_TO_CV from './undotted.json';
 import {sentences} from './sentences';
 
 const NNBSP = '\u202F';
 const FULL_STOP = '\u166E';
+const FINAL_MIDDLE_DOT = '\u1427';
+const FIRSTVOICES_GREMLINS = new RegExp(`${NNBSP}|${FULL_STOP}`, 'g');
+const GBOARD_GREMLINS = new RegExp(`${NNBSP}`, 'g');
+
 
 /**
- * How many syllabies are in this word?
+ * How many syllables are in this sentence?
  */
 export function syllablesIn(sentenceID) {
   let sentence = sentences[sentenceID];
@@ -15,7 +19,7 @@ export function syllablesIn(sentenceID) {
 }
 
 /**
- *
+ * Returns a sentence that can be typed on this particular keyboard.
  */
 export function getSentenceForLayout(sentenceID, keyboardLayout) {
   let rawSentence = sentences[sentenceID];
@@ -26,22 +30,26 @@ export function getSentenceForLayout(sentenceID, keyboardLayout) {
     //  - turn CwV into CV+w-dot
     //  - actually, firstvoices CAN write long vowels; just its w-dot is
     //  stupid.
-    return depoint(rawSentence)
-      .replace(NNBSP, '')
-      .replace(FULL_STOP, '');
+    return splitWdot(rawSentence)
+      .replace(FIRSTVOICES_GREMLINS, '');
+  } else if (keyboardLayout === 'gboard') {
+    return rawSentence.replace(GBOARD_GREMLINS, '');
+  } else {
+    return rawSentence;
   }
-  return rawSentence;
 }
 
 
-const pointed = Object.keys(DEPOINT_TABLE).join('');
+const pointed = Object.keys(CWV_TO_CV).join('');
 const pattern = new RegExp(`[${pointed}]`, 'g')
 
 /**
- * Makes things pallatable for the first voices keyboard.
+ * Splits precomposed CwV syllables into the CV syllable plus middle dot.
+ *
+ * This is required for the firstvoices keyboard ¯\_(ツ)_/¯
  */
-export function depoint(syllabicsString) {
-  return syllabicsString.replace(pattern, (match) => {
-    return DEPOINT_TABLE[match];
+export function splitWdot(syllabicsString) {
+  return syllabicsString.replace(pattern, (syllable) => {
+    return CWV_TO_CV[syllable] + FINAL_MIDDLE_DOT;
   });
 }

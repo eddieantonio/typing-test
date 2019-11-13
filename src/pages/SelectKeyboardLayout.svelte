@@ -27,7 +27,7 @@ let layouts = Array.from(function* () {
   for (let layout of Object.keys(layoutTopLeftKey)) {
     yield {
       value: layout,
-      display: `Keyboard “${layoutToCodeName(layout)}“`,
+      display: `Keyboard “${layoutToCodeName(layout)}”`,
       disabled: !layoutsRemaining.has(layout)
     };
   }
