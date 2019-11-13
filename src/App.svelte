@@ -9,6 +9,7 @@
   import DumpData from './pages/DumpData.svelte';
   import PriorToSentence from './pages/PriorToSentence.svelte';
   import Practice from './pages/Practice.svelte';
+  import AfterPractice from './pages/AfterPractice.svelte';
 
   import Facilitator from './components/Facilitator.svelte';
 </script>
@@ -85,6 +86,10 @@
     <!-- The participant must practice the layout for at least... some amount
          of minutes. -->
     <Route path="/layout/:layout/practice" exact component={Practice} />
+
+    <!-- The participant must practice the layout for at least... some amount
+         of minutes. -->
+    <Route path="/layout/:layout/practice/after" exact component={AfterPractice} />
 
     <!-- After practicing, they are prompted to begin the test proper. -->
     <Route path="/layout/:layout/sentence" exact component={PriorToSentence} />
