@@ -25,13 +25,18 @@
 </script>
 
 
-<button disabled={!readyToMoveOn} on:click={navigate.toAfterPractice}>
+<button
+  disabled={!readyToMoveOn}
+  on:click={navigate.toAfterPractice}
+  class:draw-attention={readyToMoveOn}
+>
   Done practice
 </button>
 
 <Stimulus {sentenceID} {keyboardLayout} />
 <textarea
   class="type-syllabics"
+  class:type-syllabics--ready={readyToMoveOn}
   bind:value={buffer}
   placeholder="Tap here and start typing"
   autocapitalize="none"

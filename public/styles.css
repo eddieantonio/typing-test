@@ -84,6 +84,27 @@ main > a:last-child {
   min-height: 10rem;
 }
 
+/* When we're ready to move on in practice */
+.type-syllabics--ready {
+  color: #333;
+  background-color: #FFC;
+}
+
+@keyframes pulse-outline {
+  0% {
+    outline-width: .125rem;
+  }
+  100% {
+    outline-width: .5rem;
+  }
+}
+
+button.draw-attention {
+  outline: #9CF .5rem auto;
+  outline-offset: -0.25rem;
+  animation: pulse-outline .5s ease-in infinite alternate;
+}
+
 textarea.type-syllabics {
   font-family: inherit;
 }
