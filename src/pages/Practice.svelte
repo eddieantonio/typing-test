@@ -2,7 +2,7 @@
   import * as navigate from '../navigate';
   import Stimulus from '../components/Stimulus.svelte';
 
-  const MINIMUM_PRACTICE_TIME = 0 * 60 * 1000; // milliseconds
+  const MINIMUM_PRACTICE_TIME = (1).minute;
 
   /**
    * Will be passed from the router.
@@ -22,6 +22,7 @@
   setTimeout(() => {
     readyToMoveOn = true;
   }, MINIMUM_PRACTICE_TIME);
+  console.log(`Will wait for ${MINIMUM_PRACTICE_TIME}ms before moving on.`);
 </script>
 
 

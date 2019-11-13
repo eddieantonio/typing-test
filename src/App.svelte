@@ -1,15 +1,17 @@
 <script>
   import {Router, Route, Link} from 'svero';
 
+  import './monkeypatch-time.js';
   import * as navigate from './navigate';
+
+  import AfterPractice from './pages/AfterPractice.svelte';
+  import DumpData from './pages/DumpData.svelte';
   import EnterParticipantID from './pages/EnterParticipantID.svelte';
+  import Practice from './pages/Practice.svelte';
+  import PresentStimulus from './pages/PresentStimulus.svelte';
+  import PriorToSentence from './pages/PriorToSentence.svelte';
   import SelectKeyboardLayout from './pages/SelectKeyboardLayout.svelte';
   import TypingTest from './pages/TypingTest.svelte';
-  import PresentStimulus from './pages/PresentStimulus.svelte';
-  import DumpData from './pages/DumpData.svelte';
-  import PriorToSentence from './pages/PriorToSentence.svelte';
-  import Practice from './pages/Practice.svelte';
-  import AfterPractice from './pages/AfterPractice.svelte';
 
   import Facilitator from './components/Facilitator.svelte';
 </script>

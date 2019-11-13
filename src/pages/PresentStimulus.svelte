@@ -6,7 +6,7 @@
 
   /* Prime for this long before automatically advancing. */
   const SYLLABLES_PER_MINUTE = 447 - 69; // from https://iovs.arvojournals.org/article.aspx?articleid=2166061
-  const MILLISECONDS_PER_SYLLABLE = (60 * 1000) / SYLLABLES_PER_MINUTE;
+  const MILLISECONDS_PER_SYLLABLE = (1).minute / SYLLABLES_PER_MINUTE;
 
   /**
    * Will be passed from the router.
