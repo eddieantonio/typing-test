@@ -188,7 +188,7 @@ export class Globals {
       return value;
     });
 
-    this. _sentencesForAllLayouts.set(asJSON);
+    this._sentencesForAllLayouts.set(asJSON);
   }
 }
 

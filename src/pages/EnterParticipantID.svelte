@@ -2,6 +2,8 @@
   import {navigateTo} from 'svero';
 
   import globals from '../globals';
+  import {SET_ONE, SET_TWO, SET_THREE} from '../sentences/sets';
+  import Facilitator from '../components/Facilitator.svelte';
 
   // Props that come from the router.
   export let router;
@@ -21,14 +23,14 @@
     console.assert(!globals.currentParticipantID);
     globals.currentParticipantID = participantID;
     globals.initializeSentences({
-      keyman: new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
-      firstvoices: new Set([10, 11, 12, 13, 14, 15, 16, 17, 18, 19]),
-      gboard: new Set([20, 21, 22, 23, 24, 25, 26, 27, 28, 29]),
+      keyman: new Set(SET_ONE),
+      firstvoices: new Set(SET_TWO),
+      gboard: new Set(SET_THREE),
     });
   }
 </script>
 
-<h1> 👨🏽‍🔬 Before test: </h1>
+<h1> <Facilitator/> Before test: </h1>
 <form on:submit={continueToInstructions}>
   <label for="partid"> Please enter your participant ID:
       <input type="number" id="partid" bind:value={participantID} required>
