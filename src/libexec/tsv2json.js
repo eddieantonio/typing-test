@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-/** 
+/**
  * Convert the TSV file of sentences into a JSON format that can be imported
  * by the app.
  */
@@ -18,14 +18,25 @@ let [header, ...rows] = contents.split('\n');
 assert.equal(header.toLowerCase(), 'sro\tsyllabics');
 
 
-let sentences = [];
+// The two nulls make the indices EQUAL to the line number in the file.
+//  (first null for the header, second null to make it 1-indexed).
+// This will make a confusing JSON file, but will make it easier to compare
+// indices between the source file and the resultant JSON.
+let sentences = [null, null];
 for (let row of rows) {
-  if (row.trim() === '') {
+  row = row.trim();
+
+  // skip empty lines and comments
+  if (row === '' || row.startsWith('#')) {
+    sentences.push(null)
     continue;
   }
 
   let [sro, syllabics] = row.split('\t')
-  assert(syllabics !== undefined);
+  assert(syllabics !== undefined, row);
+  sro = sro.trim();
+  syllabics = syllabics.trim();
+
   sentences.push(syllabics);
 }
 
