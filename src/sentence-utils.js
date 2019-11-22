@@ -19,17 +19,11 @@ export function syllablesIn(sentenceID) {
 }
 
 /**
- * Returns a sentence that can be typed on this particular keyboard.
+ * Returns a sentence with such that every character can be typed with the
+ * current keyboard, down to the code point.
  */
-export function getSentenceForLayout(sentenceID, keyboardLayout) {
-  let rawSentence = sentences[sentenceID];
-  /* The FirstVoices keyboard does not support pointed text, so get rid of
-   *those points! */
+export function adaptSentenceForLayout(rawSentence, keyboardLayout) {
   if (keyboardLayout === 'firstvoices') {
-    // TODO: this should also:
-    //  - turn CwV into CV+w-dot
-    //  - actually, firstvoices CAN write long vowels; just its w-dot is
-    //  stupid.
     return splitWdot(rawSentence)
       .replace(FIRSTVOICES_GREMLINS, '');
   } else if (keyboardLayout === 'gboard') {
@@ -39,6 +33,13 @@ export function getSentenceForLayout(sentenceID, keyboardLayout) {
   }
 }
 
+/**
+ * Returns a sentence that can be typed on this particular keyboard.
+ */
+export function getSentenceForLayout(sentenceID, keyboardLayout) {
+  let rawSentence = sentences[sentenceID];
+  return adaptSentenceForLayout(rawSentence, keyboardLayout);
+}
 
 const pointed = Object.keys(CWV_TO_CV).join('');
 const pattern = new RegExp(`[${pointed}]`, 'g')
