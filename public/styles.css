@@ -18,8 +18,7 @@ html {
   /* Syllabics fonts: */
   font-family: Noto Sans, Gadugi, Euphemia, Euphemia UCAS,
     -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    Apple Color Emoji, Segoe UI
-  Emoji, sans-serif;
+    Apple Color Emoji, Segoe UI Emoji, sans-serif;
   font-size: larger;
   min-height: 100vh;
 }
@@ -73,6 +72,10 @@ main > a:last-child {
 .the-sentence {
   margin: .5rem 1rem;
   padding-right: 1rem;
+}
+
+.the-sentence--correct {
+  color: green;
 }
 
 .type-syllabics {

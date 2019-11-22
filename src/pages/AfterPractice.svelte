@@ -1,7 +1,10 @@
 <script>
   import * as navigate from '../navigate';
-  import Stimulus from '../components/Stimulus.svelte';
   import Facilitator from '../components/Facilitator.svelte';
+  import Stimulus from '../components/Stimulus.svelte';
+  import globals from '../globals';
+  import {PRACTICE_WORDS} from '../practice';
+  import {adaptSentenceForLayout} from '../sentence-utils';
 
   /**
    * Will be passed from the router.
@@ -10,11 +13,18 @@
    */
   export let router = {};
 
-  let buffer = '';
-
-  // TODO: where are we getting the practice sentence from?
-  const sentenceID = 44;
   let keyboardLayout = router.params['layout'];
+  console.assert(globals.layoutUnderTest === keyboardLayout);
+
+  // Have buffers for all of these.
+  let buffers = [];
+  for (let word of PRACTICE_WORDS) {
+    word = adaptSentenceForLayout(word, keyboardLayout);
+    buffers.push({word, buffer: ''});
+  }
+
+  let readyToMoveOn = false;
+  $: readyToMoveOn = buffers.some(({buffer}) => buffer.length > 0);
 </script>
 
 
@@ -23,21 +33,33 @@
 </h1>
 
 <p> Now is your chance to ask the <Facilitator/> facilitator specific
-questions on how to use the keyboard. </p>
+questions on <strong>how to use the keyboard</strong>. Ask the facilitator how
+to write <strong>specific syllabics</strong>. </p>
 
-<button
-  disabled={buffer.length === 0}
-  on:click={navigate.toTestCurrentLayout}>
-  Ready
-</button>
+<hr/>
 
-<Stimulus {sentenceID} {keyboardLayout} />
-<textarea
-  class="type-syllabics"
-  bind:value={buffer}
-  placeholder="Tap here and start typing"
-  autocapitalize="none"
-  autocomplete="off"
-  spellcheck="false"
-  wrap="hard"
-/>
+<form on:submit|preventDefault={navigate.toTestCurrentLayout}>
+  {#each buffers as {buffer, word}}
+    <p
+      class="the-sentence"
+      class:the-sentence--correct={word === buffer}>{
+      word
+    }</p>
+    <textarea
+      class="type-syllabics type-syllabics--small"
+      bind:value={buffer}
+      placeholder="Tap here to type"
+      autocapitalize="none"
+      autocomplete="off"
+      spellcheck="false"
+      wrap="hard"
+    />
+  {/each}
+
+  <button
+    disabled={!readyToMoveOn}
+    class:draw-attention={readyToMoveOn}
+  >
+    Done asking questions
+  </button>
+</form>
