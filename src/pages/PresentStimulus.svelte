@@ -5,7 +5,7 @@
   import {syllablesIn} from '../sentence-utils';
 
   /* Prime for this long before automatically advancing. */
-  const primingTime = (30).seconds;
+  const primingTime = (15).seconds;
 
   /**
    * Will be passed from the router.
