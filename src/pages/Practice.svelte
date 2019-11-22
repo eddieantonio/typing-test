@@ -1,9 +1,6 @@
 <script>
   import * as navigate from '../navigate';
-  import Stimulus from '../components/Stimulus.svelte';
-
-  // TODO: rapid fire words
-  const MINIMUM_PRACTICE_TIME = (1).minute;
+  import {PRACTICE_WORDS} from '../practice';
 
   /**
    * Will be passed from the router.
@@ -12,37 +9,43 @@
    */
   export let router = {};
 
-  let buffer = '';
-
-  // TODO: where are we getting the practice sentence from?
-  const sentenceID = 44;
+  // Have buffers for all of these.
+  let buffers = [];
+  for (let word of PRACTICE_WORDS) {
+    buffers.push({word, buffer: ''});
+  }
   let keyboardLayout = router.params['layout'];
 
   let readyToMoveOn = false;
-
-  setTimeout(() => {
-    readyToMoveOn = true;
-  }, MINIMUM_PRACTICE_TIME);
-  console.log(`Will wait for ${MINIMUM_PRACTICE_TIME}ms before moving on.`);
+  $: readyToMoveOn = buffers.every(({buffer}) => buffer.length > 0);
 </script>
 
+<h1>Practice</h1>
 
-<button
-  disabled={!readyToMoveOn}
-  on:click={navigate.toAfterPractice}
-  class:draw-attention={readyToMoveOn}
->
-  Done practice
-</button>
+<p class="instructions">
+Type every word <strong>exactly</strong> as it appears on the line above it.
+</p>
 
-<Stimulus {sentenceID} {keyboardLayout} />
-<textarea
-  class="type-syllabics"
-  class:type-syllabics--ready={readyToMoveOn}
-  bind:value={buffer}
-  placeholder="Tap here and start typing"
-  autocapitalize="none"
-  autocomplete="off"
-  spellcheck="false"
-  wrap="hard"
-/>
+
+<form on:submit|preventDefault={navigate.toAfterPractice}>
+  {#each buffers as {buffer, word}}
+    <p class="the-sentence">{word}</p>
+    <textarea
+      class="type-syllabics"
+      bind:value={buffer}
+      placeholder="Tap here and start typing"
+      autocapitalize="none"
+      height=1
+      autocomplete="off"
+      spellcheck="false"
+      wrap="hard"
+    />
+  {/each}
+
+  <button
+    disabled={!readyToMoveOn}
+    class:draw-attention={readyToMoveOn}
+  >
+    Done practice
+  </button>
+</form>

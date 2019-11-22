@@ -103,6 +103,7 @@ button.draw-attention {
 
 textarea.type-syllabics {
   font-family: inherit;
+  margin-block-end: 1em;
 }
 
 .low-key.instructions {
