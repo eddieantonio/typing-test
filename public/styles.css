@@ -84,6 +84,11 @@ main > a:last-child {
   min-height: 10rem;
 }
 
+
+.type-syllabics--small {
+  min-height: 1ex;
+}
+
 /* When we're ready to move on in practice */
 .type-syllabics--ready {
   color: #333;

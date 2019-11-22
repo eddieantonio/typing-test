@@ -31,11 +31,10 @@ Type every word <strong>exactly</strong> as it appears on the line above it.
   {#each buffers as {buffer, word}}
     <p class="the-sentence">{word}</p>
     <textarea
-      class="type-syllabics"
+      class="type-syllabics type-syllabics--small"
       bind:value={buffer}
-      placeholder="Tap here and start typing"
+      placeholder="Tap here to type"
       autocapitalize="none"
-      height=1
       autocomplete="off"
       spellcheck="false"
       wrap="hard"

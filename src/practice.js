@@ -12,5 +12,5 @@ export let PRACTICE_WORDS = [
   "ᓇᒹᐨ",      // namwâc
   "ᐱᔨᐢᐠ",     // piyisk
   "ᒥᐢᑕᐦᐃ᙮",   // mistahi.
-  "ᐋ",        // â
+  "ᐚ",        // wâ
 ];
