@@ -1,6 +1,9 @@
 <script>
   import * as navigate from '../navigate';
+  import globals from '../globals';
   import {PRACTICE_WORDS} from '../practice';
+  import {adaptSentenceForLayout} from '../sentence-utils';
+
 
   /**
    * Will be passed from the router.
@@ -9,23 +12,26 @@
    */
   export let router = {};
 
+  let keyboardLayout = router.params['layout'];
+  console.assert(globals.layoutUnderTest === keyboardLayout);
+
   // Have buffers for all of these.
   let buffers = [];
   for (let word of PRACTICE_WORDS) {
+    word = adaptSentenceForLayout(word, keyboardLayout);
     buffers.push({word, buffer: ''});
   }
-  let keyboardLayout = router.params['layout'];
 
   let readyToMoveOn = false;
   $: readyToMoveOn = buffers.every(({buffer}) => buffer.length > 0);
 </script>
+
 
 <h1>Practice</h1>
 
 <p class="instructions">
 Type every word <strong>exactly</strong> as it appears on the line above it.
 </p>
-
 
 <form on:submit|preventDefault={navigate.toAfterPractice}>
   {#each buffers as {buffer, word}}
