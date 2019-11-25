@@ -44,13 +44,13 @@
       for smartphones. We have <strong>three</strong> different keyboard
       layouts installed on this phone. You task is to use all three layouts to
       <strong>type a few sample sentences in Cree</strong>. After testing all
-      three, you will be given a <strong>short questionnaire</strong> to fill
-      out. </p>
+      three keyboards, you will be given a <strong>short
+      questionnaire</strong> to fill out. </p>
 
       <p><strong>Important</strong>: We are not testing <em>you</em> today;
       we are testing the keyboards. We will be collecting data on how often
-      typos are made; however, typos are not your fault! That's the keyboard's
-      fault. </p>
+      typos are made; however, typos are not your fault! Typos are the
+      keyboard's fault. </p>
 
       <h2> Consent </h2>
 
