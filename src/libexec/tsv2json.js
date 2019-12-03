@@ -8,6 +8,12 @@
 const fs = require('fs');
 const assert = require('assert').strict;
 
+const {sro2syllabics} = require('cree-sro-syllabics');
+
+const ALLOWABLE_CHARACTERS = /^[\u0020!"\u202F\u1400-\u1680]$/;
+
+//////////////////////////////////// MAIN ////////////////////////////////////
+
 let [_node, _script, filename, outName] = process.argv;
 assert.ok(filename, 'must provide a filename');
 assert.ok(outName, 'must provide a destination');
@@ -33,12 +39,24 @@ for (let row of rows) {
   }
 
   let [sro, syllabics] = row.split('\t')
-  assert(syllabics !== undefined, row);
   sro = sro.trim();
-  syllabics = syllabics.trim();
+
+  syllabics = sro2syllabics(sro);
+  ensureOnlyAllowableCharacters(syllabics);
 
   sentences.push(syllabics);
 }
 
 let jsonified = JSON.stringify({ sentences });
 fs.writeFileSync(outName, jsonified + '\n', 'utf8');
+
+
+////////////////////////////////// HELPERS ///////////////////////////////////
+
+function ensureOnlyAllowableCharacters(text) {
+  for (let ch of text) {
+    if (!ALLOWABLE_CHARACTERS.exec(ch)) {
+      throw new Error(`unallowable character ${ch} in: ${text}`);
+    }
+  }
+}
