@@ -5,7 +5,7 @@ export let PRACTICE_WORDS = [
   "ᐱᒥᐸᔨᐤ",    // pimipayiw
   "ᐁᑯᑌ",      // êkotê
   "ᑮ ᐃᑖᐤ",    // kî-itâw
-  "ᐁ ᒪᐘᓱᔮᕽ",  // ê-mawasoyâhk
+  "ᐁ ᒪᐏᓱᔮᕽ",  // ê-mawisoyâhk
   "ᓇᒨᔭ",      // namôya
   "ᓂᐢᑯᒑᑳᐢ",   // miskocâkâs
   "ᐴᒣᐤ",      // pômêw
