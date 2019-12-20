@@ -58,7 +58,7 @@
       <Facilitator/> go get the facilitator to give you a consent form and fill
       it out before continuing. </p>
 
-      <p> Your participation is completely voluntary. <strong>You may end your
+      <p> Your participation is entirely voluntary. <strong>You may end your
       participation at anytime for any reason without penalty</strong>. Any
       data we collect from you will be immediately destroyed upon your
       withdrawal from the study. </p>

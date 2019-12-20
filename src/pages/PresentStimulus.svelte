@@ -39,6 +39,6 @@
 <Stimulus {sentenceID} {keyboardLayout} />
 <p class="low-key instructions">
   Read the syllabics above carefully. After a while, this text will disappear,
-  and you will will be able to type this sentence.
+  and you will be able to type this sentence.
   Type the sentence <strong>exactly</strong> as it appears.
 </p>
