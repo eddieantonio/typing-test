@@ -13,8 +13,9 @@
     "url": "git+https://github.com/eddieantonio/typing-test.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
+  "license": "MIT",
+  "private": true,
   "bugs": {
     "url": "https://github.com/eddieantonio/typing-test/issues"
   },
